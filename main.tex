@@ -1,0 +1,54 @@
+\documentclass[ebook,10pt,oneside,openany]{memoir}
+% \usepackage[utf8x]{inputenc}
+% \usepackage[english]{babel}
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{diffcoeff}
+\usepackage{graphicx}
+\usepackage{float}
+
+% \diffdef { pvrule } { op-symbol = \partial }
+% for placeholder text
+\usepackage{lipsum}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+
+% \usepackage{algpseudocode}
+% \usepackage[⟨options⟩]{fancyhdr}
+\usepackage{listings}
+
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\renewcommand{\algorithmicendif}{\textbf{end}}
+
+
+
+\title{Anotações das Aulas de Ciência de Dados\\
+  \large Fundamentos Matemáticos, Teoria de Aprendizado  \\
+  e Aplicações em Python}
+\author{Diego Pinheiro, PhD \\ Rodrigo Monteiro, PhD}
+
+\begin{document}
+\maketitle
+
+\newpage
+\tableofcontents
+\part{Introdução}
+\input{Parts/Introduction/introduction}
+\part{Notações}
+\input{Parts/Notations/notations}
+\part{Fundamentos Matemáticos}
+\input{Parts/MathematicalFundations/mathematicalFundations}
+
+\bibliographystyle{plain} % We choose the "plain" reference style
+\bibliography{refs} % Entries are in the refs.bib file
+
+\end{document}

@@ -1,0 +1,73 @@
+# ----------------------
+# Arquivos auxiliares LaTeX
+# ----------------------
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.synctex.gz
+*.synctex(busy)
+
+# ----------------------
+# Bibliografia
+# ----------------------
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+
+# ----------------------
+# Índice / Glossário
+# ----------------------
+*.idx
+*.ilg
+*.ind
+*.ist
+*.glo
+*.gls
+*.glg
+*.glsdefs
+*.acn
+*.acr
+*.alg
+
+# ----------------------
+# Beamer (apresentações)
+# ----------------------
+*.nav
+*.snm
+*.vrb
+
+# ----------------------
+# latexmk / lualatex / xelatex
+# ----------------------
+*.fdb_latexmk
+*.fls
+
+# ----------------------
+# Overleaf específicos
+# ----------------------
+.texpadtmp/
+*.synctex.gz(busy)
+*.synctex.gz
+*.xdv
+output/
+*converted-to.pdf
+
+# ----------------------
+# Arquivos temporários comuns
+# ----------------------
+*.bak
+*.backup
+*~
+*.swp
+*.tmp
+.DS_Store
+
+# ----------------------
+# Diretórios auxiliares locais
+# ----------------------
+_build/
+latex.out/
