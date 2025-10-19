@@ -1,6 +1,7 @@
 \section{Vetores}
 
-Os vetores $\mathbf{x}$ e $\mathbf{w}$ são representados por letras minúsculas em negrito em formato coluna.
+Os vetores, são estruturas unidimensionais que podem armazenar informações e serão representados com letras minúsculas em negrito, como $\mathbf{x}$\ e $\mathbf{w}$ e serão 
+em formato de coluna. 
 
 \begin{equation}
 \begin{aligned}
@@ -9,14 +10,37 @@ Os vetores $\mathbf{x}$ e $\mathbf{w}$ são representados por letras minúsculas
     x_0 \\
     x_1 \\
     \vdots \\
-    x_n
-\end{bmatrix}, \quad
+    x_d
+\end{bmatrix}_{D\times 1}, \quad
 \mathbf{w} = 
 \begin{bmatrix}
     w_0 \\
     w_1 \\
     \vdots \\
-    w_n
-\end{bmatrix} 
+    w_d
+\end{bmatrix}_{D\times 1} 
 \end{aligned}
+\end{equation}
+
+Para conseguirmos entender e visualizar melhor o que seria um vetor coluna, podemos imaginar que um vetor é uma lista de valores empilhados verticalmente, onde cada valor individual é chamado de componente do vetor.
+Como por exemplo, imagine que um vetor $\mathbf{v}$ trata-se de um apartamento e nesse apartamento temos várias informações
+como quantidade de quartos, banheiros, $m^2$.
+
+
+\begin{equation}
+    \mathbf{v} =
+    \begin{array}{@{}c@{\qquad}l@{}}
+        \vcenter{\hbox{$\begin{bmatrix}
+            v_0 \\
+            v_1 \\
+            \vdots \\
+            v_d
+        \end{bmatrix}_{D\times 1}$}}
+        \begin{array}{@{}l@{}}
+            \text{quartos} \\
+            \text{banheiros} \\
+            \vdots \\
+            \mathrm{m}^2
+        \end{array}
+    \end{array}
 \end{equation}
