@@ -37,22 +37,53 @@ Coluna Y são os preços de apartamentos, as outras são características dos ap
 
 
 \begin{equation*}
-    \mathcolor{ForestGreen}{y} = X{\mathcolor{orange}{w}} \quad ; 
-    \mathcolor{ForestGreen}{y} = 
+    \mathbf{\mathcolor{ForestGreen}{y}} = X{\mathbf{\mathcolor{violet}{w}}} \quad ; 
+    \mathbf{\mathcolor{ForestGreen}{y}} = 
     \begin{bmatrix}
     \,|\, & \,|\, &        & \,|\, \\
     \mathbf{x}_{\mathcolor{Orange}{1}} 
         & \mathbf{x}_{\mathcolor{Orange}{2}}
         & \cdots 
-        & \mathbf{x}_{\mathcolor{Orange}{D}} \\
+        & \mathbf{x}_{\mathcolor{Orange}{d}} \\
     \,|\, & \,|\, &        & \,|\, \\
-\end{bmatrix}_{\mathcolor{ForestGreen}{N}\times\mathcolor{orange}{D}} \times
+\end{bmatrix}_{\mathcolor{ForestGreen}{N}\times\mathcolor{orange}{D}} \cdot
 \begin{bmatrix}
-    \mathcolor{orange}{w}_{\mathcolor{orange}{0}} \\
-    \mathcolor{orange}{w}_{\mathcolor{orange}{1}} \\
+    \mathcolor{violet}{w}_{\mathcolor{orange}{0}} \\
+    \mathcolor{violet}{w}_{\mathcolor{orange}{1}} \\
     \vdots \\
-    \mathcolor{orange}{w}_{\mathcolor{orange}{d}}
+    \mathcolor{violet}{w}_{\mathcolor{orange}{d}}
 \end{bmatrix}_{\mathcolor{orange}{D}\times 1}
 \end{equation*}
 
-Vamos continuar pensando que a matriz $X$  onde cada linha é um apartamento e cada coluna é alguma informação do apartamento. Logo, estamos querendo saber o preço desses apartamentos a partir das informações, será que apartamentos com mais quarto são mais caros por exemplo. Então temos que o $\mathcolor{orange}{w}$ é um vetor coluna de pesos, pense que cada informação do apartamento tem um peso associado a ele que vai ser importante para o cálculo do preço final. Então $\mathcolor{ForestGreen}{y}$ é um vetor coluna que contém os preços de todos os apartamentos.
+Vamos continuar pensando que a matriz $X$  onde cada linha é um apartamento e cada coluna é alguma informação do apartamento. Logo, estamos querendo saber o preço desses apartamentos a partir das informações, será que apartamentos com mais quarto são mais caros por exemplo. Então temos que o $\mathbf{\mathcolor{violet}{w}}$ é um vetor coluna de pesos, pense que cada informação do apartamento tem um peso associado a ele que vai ser importante para o cálculo do preço final. Então $\mathbf{\mathcolor{ForestGreen}{y}}$ é um vetor coluna que contém os preços de todos os apartamentos.
+
+Mas afinal quem é $\mathbf{\mathcolor{violet}{w}}$? Bom, temos dois $w$, um deles é que existe um $\mathbf{\mathcolor{violet}{w}^{\mathcolor{violet}{*}}}$ que é um conjunto de pesos que vai
+conseguir prever perfeitamente todos os preços dos apartamentos corretamente e que assim vai gerar o $\mathbf{\mathcolor{ForestGreen}{y}} = X\mathbf{\mathcolor{violet}{w}}^{\mathcolor{violet}{*}}$. Como esse $\mathbf{\mathcolor{violet}{w}}^{\mathcolor{violet}{*}}$ é desconhecido,
+tentamos encontrar um $\mathbf{\mathcolor{violet}{\hat{w}}}$ que tenta se aproximar ao máximo de $\mathbf{\mathcolor{violet}{w}^{\mathcolor{violet}{*}}}$ e que assim vai gerar o $\mathbf{\mathcolor{red}{\hat{y}}} = X\mathbf{\mathcolor{violet}{\hat{w}}}$, nota-se que o $\mathbf{\mathcolor{red}{\hat{y}}}$ não vai conseguir prever os preços de todos os apartamentos corretamente como o $\mathbf{\mathcolor{ForestGreen}{y}}$ mas será o mais próximo dele possível. 
+
+Como encontrar o $\mathbf{w}$?
+
+\begin{itemize}
+    \item $X$ é uma matriz quadrada $X_{\mathcolor{orange}{D} \times \mathcolor{orange}{D}}$
+\end{itemize}
+
+\begin{equation}
+\begin{aligned}
+\mathbf{\mathcolor{ForestGreen}{y}}
+&= X_{\mathcolor{orange}{D}\times\mathcolor{orange}{D}} \cdot \mathbf{\mathcolor{violet}{w}}_{\mathcolor{orange}{D}\times 1} \\
+X_{\mathcolor{orange}{D}\times\mathcolor{orange}{D}}^{-1} \cdot \mathbf{\mathcolor{ForestGreen}{y}}
+&= X_{\mathcolor{orange}{D}\times\mathcolor{orange}{D}}^{-1} \cdot
+   X_{\mathcolor{orange}{D}\times\mathcolor{orange}{D}} \cdot
+   \mathbf{\mathcolor{violet}{w}}_{\mathcolor{orange}{D}\times 1} \\
+X_{\mathcolor{orange}{D}\times\mathcolor{orange}{D}}^{-1} \cdot \mathbf{\mathcolor{ForestGreen}{y}}
+&= \mathit{I} \cdot \mathbf{\mathcolor{violet}{w}}_{\mathcolor{orange}{D}\times 1} \\
+X_{\mathcolor{orange}{D}\times\mathcolor{orange}{D}}^{-1} \cdot \mathbf{\mathcolor{ForestGreen}{y}}
+&= \mathbf{\mathcolor{violet}{w}}_{\mathcolor{orange}{D}\times 1}\\
+X_{\mathcolor{orange}{D}\times\mathcolor{orange}{D}}^{-1} \cdot \mathbf{\mathcolor{ForestGreen}{y}}
+&= \mathbf{\mathcolor{violet}{w}^{\mathcolor{violet}{*}}}_{\mathcolor{orange}{D} \times 1}\\
+\mathcolor{red}{\hat{\mathbf{y}}} &= X_{\mathcolor{orange}{D}\times\mathcolor{orange}{D}} \, \cdot \mathcolor{violet}{\mathbf{w}}^{\mathcolor{violet}{*}}\\
+\mathcolor{red}{\hat{\mathbf{y}}} &= X_{\mathcolor{orange}{D}\times\mathcolor{orange}{D}}\,\cdot X_{\mathcolor{orange}{D}\times\mathcolor{orange}{D}}^{-1} \cdot \mathbf{\mathcolor{ForestGreen}{y}}\\
+\mathcolor{red}{\hat{\mathbf{y}}} &= I \cdot \mathbf{\mathcolor{ForestGreen}{y}}\\
+\mathcolor{red}{\hat{\mathbf{y}}} &= \mathbf{\mathcolor{ForestGreen}{y}}
+\end{aligned}
+\end{equation}
