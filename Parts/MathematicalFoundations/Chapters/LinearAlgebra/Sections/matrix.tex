@@ -1,8 +1,11 @@
 \section{Matrizes}
-As matrizes representam apartamentos nas linhas e cada coluna representam informações do apartamento como as outras que vimos antes. Ou seja, se cada apartamento tem 5 informações e pesquisamos por 10 apartamentos, teremos uma matriz de 10 linhas e 5 colunas. Se as 5 informações de cada apartamento for representado em um vetor coluna, para construir a matriz de dados, podemos empilhar em cada linha as transpostas desses vetores colunas.
+As matrizes são elementos matemáticos muito utilizados em machine learning. Esses elementos podem representar desde sistemas lineares e funções até dados. Vejamos um exemplo. Podemos usar matrizes para representar um conjunto de dados de apartamentos, onde as linhas e colunas representam cada apartamento e suas informações, respectivamente. Imagine uma base de dados com 10 apartamentos, onde cada apartamento tem 5 informações, como número de quartos, número de banheiros, área em metros quadrados, localização e preço. Nesse caso, podemos pensar em cada apartamento como um vetor coluna com cada linha representando suas features, como apresentado na seção~\ref{sec:vector-section}. Para construir a matriz de dados, podemos empilhar em cada linha as transpostas desses vetores coluna, ao fim teremos uma matriz de 10 linhas e 5 colunas.
+
+\vspace{1cm}
+
 \begin{equation}
 \begin{aligned}
-X = \begin{bmatrix}
+\mathbf{X} = \begin{bmatrix}
     \mbox{---}  \mathbf{x}^T_{\mathcolor{ForestGreen}{1}} \mbox{---}  \\
      \mbox{---}  \mathbf{x}^T_{\mathcolor{ForestGreen}{2}} \mbox{---}  \\
     \vdots \\
@@ -19,3 +22,140 @@ X = \begin{bmatrix}
 \end{bmatrix}_{\mathcolor{ForestGreen}{N}\times\mathcolor{orange}{D}}
 \end{aligned}
 \end{equation}
+
+\vspace{1cm}
+
+Onde $\mathcolor{ForestGreen}{N}$ é o número de apartamentos e $\mathcolor{Orange}{D}$ é o número de informações.
+
+Como podemos perceber, matrizes são uma forma muito útil de trabalharmos com dados e, frequentemente, fazemos operações com esses objetos matemáticos, como multiplicação, transposição, inversão, entre outras. Abaixo definiremos algumas operações e identidades matriciais que são muito utilizadas em machine learning.
+
+\subsubsection{Matrizes Singulares e Não Singulares}
+
+Em aprendizado por dados, é comum representarmos os dados em matrizes, onde as linhas representam as amostras e as colunas representam as features. A classificação de matrizes em singulares e não singulares é importante para entendermos a estrutura dos dados. Uma matriz é classificada como singular se existir uma combinação linear entre as colunas da matriz, ou seja, se existir uma coluna que pode ser escrita como uma combinação linear das outras colunas. Por outro lado, uma matriz é classificada como não singular se não existir nenhuma combinação linear entre as colunas da matriz, ou seja, se todas as colunas forem linearmente independentes. Isso é muito importante pois nos ajuda a entender, por exemplo, se os dados possuem redundância ou se as features são valiosas. Calcular o determinante de uma matriz é uma forma de verificar se a matriz é singular ou não singular. Se o determinante for igual a zero, a matriz é singular, caso contrário, a matriz é não singular. Exemplo, considere a matriz $\mathbf{A}$ abaixo:
+\[
+    \mathbf{A} = 
+    \begin{bmatrix}     
+        1 & 2 \\
+        2 & 4   
+    \end{bmatrix}
+\]
+O determinante de $\mathbf{A}$ é dado por $det(\mathbf{A}) = 1 \cdot 4 - 2 \cdot 2 = 0$. Portanto, a matriz $\mathbf{A}$ é singular, existe uma combinação linear entre as colunas da matriz, ou seja, a segunda coluna é o dobro da primeira coluna. Por outro lado, considere a matriz $\mathbf{B}$ abaixo:
+\[
+    \mathbf{B} = 
+    \begin{bmatrix}     
+        -1 & 0 \\
+        3 & -7
+    \end{bmatrix}
+\]
+O determinante de $\mathbf{B}$ é dado por $det(\mathbf{B}) = (-1) \cdot (-7) - 0 \cdot 3 = 7$. Portanto, a matriz $\mathbf{B}$ é não singular, não existe nenhuma combinação linear entre as colunas da matriz, ou seja, as colunas são linearmente independentes.
+
+
+\subsubsection{Operações com matrizes}
+
+\begin{itemize}
+    \item \textbf{Soma}: Seja $\mathbf{A}$ uma matriz de $N \times D$ e $\mathbf{B}$ uma matriz de $N \times D$, a soma entre $\mathbf{A}$ e $\mathbf{B}$ resulta uma matriz de $N \times D$ da soma das respectivas entradas de $\mathbf{A}$ e $\mathbf{B}$.:
+    \[ 
+        \mathbf{A} + \mathbf{B} := 
+        \begin{bmatrix}
+            a_{11} + b_{11} & \cdots & a_{1D} + b_{1D} \\
+            \vdots & \ddots & \vdots \\
+            a_{N1} + b_{N1} & \cdots & a_{ND} + b_{ND}
+        \end{bmatrix}
+        \in \mathbb{R}^{N \times D}.
+    \]
+
+    \item \textbf{Multiplicação}: Seja $\mathbf{A}$ uma matriz de $N \times D$ e $\mathbf{B}$ uma matriz de $D \times M$, a multiplicação entre $\mathbf{A}$ e $\mathbf{B}$ resulta em uma matriz $\mathbf{C}$ de $N \times M$ da multiplicação entre as respectivas entradas de $\mathbf{A}$ e $\mathbf{B}$, onde cada entrada $c_{ij}$ é dada por:
+    \[
+        c_{ij} := \sum_{k=1}^{D} a_{ik} b_{kj}.
+    \]
+    Um ponto importante a se destacar é que a multiplicação entre matrizes só é definida se o número de colunas da primeira matriz na multiplicação for igual ao número de linhas da segunda $\mathbf{A}_{N\times D}$ $\times$ $\mathbf{B}_{D\times M}$. Vale salientar, ainda, que a mulitplicação entre matrizes não é comutativa, ou seja, $\mathbf{AB} \neq \mathbf{BA}$. 
+    
+    Assim como na multiplicação entre números inteiros temos o \textbf{elemento neutro}, que é o número $1$, na multiplicação entre matrizes temos a matriz identidade $\mathbf{I}$, onde $\mathbf{AI} = \mathbf{IA} = \mathbf{A}$.
+
+    Além do elementro neutro, na multiplicação de matrizes também temos o \textbf{elemento inverso}, ou seja, para uma matriz quadrada $\mathbf{A}$ de $N \times N$, existe uma matriz $\mathbf{A}^{-1}$ de $N \times N$ tal que $\mathbf{AA}^{-1} = \mathbf{A}^{-1}\mathbf{A} = \mathbf{I}$. Nem toda matriz quadrada tem uma matriz inversa, nas próximas subseções discutiremos sobre as matrizes inversíveis e não inversíveis.
+
+    \item \textbf{Transposição}: Seja $\mathbf{A}$ uma matriz de $N \times D$, aplicar a transposição em $\mathbf{A}$ resulta em uma matriz $\mathbf{A}^T$ de $D \times N$ onde as linhas e colunas de $\mathbf{A}$ são invertidas. Ou seja, as linhas viram colunas e as colunas viram linhas. Quando uma matriz está transposta é comum representá-la com um $T$ sobrescrito, como $\mathbf{A}^T$.
+    
+    \item \textbf{Inversão}: Seja $\mathbf{A}$ uma matriz não singular de $N \times N$, a inversão de $\mathbf{A}$ resulta em uma matriz $\mathbf{A}^{-1}$ de $N \times N$ tal que $\mathbf{AA}^{-1} = \mathbf{A}^{-1}\mathbf{A} = \mathbf{I}$. Podemos encontrar a matriz inversa resolvendo o seguinte sistema lineare:
+    \[
+        \mathbf{A}\mathbf{X} = \mathbf{I} \Leftrightarrow  \mathbf{A}\mathbf{A}^{-1} = \mathbf{I}
+    \]
+
+    usando métodos como eliminação gaussiana na matriz aumentada $[\mathbf{A} | \mathbf{I}]$.
+
+\end{itemize}
+
+\subsubsection{Identidades úteis}
+
+\[
+    \begin{aligned}
+        \mathbf{A}\mathbf{A}^{-1} &= I = \mathbf{A}^{-1}\mathbf{A} \\
+        (\mathbf{AB})^{-1} &= \mathbf{B}^{-1}\mathbf{A}^{-1} \\
+        (\mathbf{A} + \mathbf{B})^{-1} &\neq \mathbf{A}^{-1} + \mathbf{B}^{-1} \\
+        (\mathbf{A}^\top)^\top &= \mathbf{A} \\
+        (\mathbf{AB})^\top &= \mathbf{B}^\top \mathbf{A}^\top \\
+        (\mathbf{A} + \mathbf{B})^\top &= \mathbf{A}^\top + \mathbf{B}^\top
+    \end{aligned}
+\]
+
+\subsection{Tipos de matrizes}
+
+\subsubsection{Diagonal}
+Uma matriz é caracterizada como diagonal se os elementos fora da diagonal principal são todos iguais a zero. Por exemplo, a matriz abaixo é uma matriz diagonal:
+\[
+    \mathbf{A} = 
+    \begin{bmatrix}
+        a_{11} & 0 & 0 \\
+        0 & a_{22} & 0 \\
+        0 & 0 & a_{33}
+    \end{bmatrix}
+\]
+\subsubsection{Triangular}
+
+Uma matriz é caracterizada como triangular se os elementos que acima da diagonal principal são todos iguais a zero (matriz triangular inferior) ou se os elementos abaixo da diagonal principal são todos zero (matriz triangular superior). Exemplos:
+
+\begin{itemize}
+
+\item Matriz triangular inferior:
+\[
+    \mathbf{A} = 
+    \begin{bmatrix}
+        a_{11} & a_{12} & a_{13} \\
+        0 & a_{22} & a_{23} \\
+        0 & 0 & a_{33}
+    \end{bmatrix}
+\]
+
+\item Matriz triangular superior:
+\[
+    \mathbf{A} = 
+    \begin{bmatrix}
+        a_{11} & 0 & 0 \\
+        a_{21} & a_{22} & 0 \\
+        a_{31} & a_{32} & a_{33}
+    \end{bmatrix}
+\]
+\end{itemize}
+
+\subsubsection{Simétrica}
+Uma matriz é caracterizada como simétrica se ela for igual à sua transposta, ou seja, $\mathbf{A} = \mathbf{A}^T$. Por exemplo, a matriz abaixo é uma matriz simétrica:
+\[
+    \mathbf{A} = 
+    \begin{bmatrix}
+        1 & 4 & 5 \\ 
+        4 & 2 & 3 \\
+        5 & 3 & 6
+    \end{bmatrix}
+\]
+
+
+\subsubsection{Ortogonal}
+Uma matriz é caracterizada como triangular se  a sua inversa for igual à sua transposta, ou seja, $\mathbf{A}^{-1} = \mathbf{A}^T$. Por exemplo, a matriz abaixo é uma matriz ortogonal:
+\[
+    \mathbf{A} = 
+    \begin{bmatrix} 
+        0 & -1 \\
+        -1 & 0
+    \end{bmatrix}   
+\]
+

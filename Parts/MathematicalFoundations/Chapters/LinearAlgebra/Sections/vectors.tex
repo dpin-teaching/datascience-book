@@ -1,4 +1,5 @@
-\section{Vetores}
+\section{Vetores} 
+\label{sec:vector-section}
 
 Os vetores, são estruturas unidimensionais que podem armazenar informações e serão representados com letras minúsculas em negrito, como $\mathbf{x}$\ e $\mathbf{w}$ e serão 
 em formato de coluna. 
@@ -44,3 +45,103 @@ como quantidade de quartos, banheiros, $m^2$.
         \end{array}
     \end{array}
 \end{equation}
+
+Neste material usaremos a notação de vetor coluna e sempre será referenciado em negrito, por exemplo, $\mathbf{x}$. Vetor linha aqui sempre sera representado com um $T$ sobrescrito, ou seja, $\mathbf{x}^T$. O vetor linha é a transposta do vetor coluna.
+\subsection{Operações com vetores}
+Seja $V$ um espaço vetorial, tal que, $V=(\mathcal{V}, +, \cdot)$, onde $\mathcal{V}$ é o conjunto de vetores do espaço vetorial. As operações $ \cdot $ e $+$ são as operações com vetores e são definidas como:
+\begin{itemize}
+    \item Adição de vetores (+): Seja $\mathbf{u}, \mathbf{v} \in \mathcal{V}$, então $\mathbf{u} + \mathbf{v} = \mathbf{w}$, onde $\mathbf{w} \in \mathcal{V}$ é o vetor resultante da soma dos vetores $\mathbf{u}$ e $\mathbf{v}$.
+    \item Multiplicação de um vetor por um escalar ($\cdot$): Seja $\mathbf{v} \in \mathcal{V}$ e $\lambda \in \mathbb{R}$, então $\lambda\mathbf{v} = \mathbf{w}$, onde $\mathbf{w}  \in \mathcal{V}$ é o vetor resultante da multiplicação do vetor $\mathbf{v}$ pelo escalar $\lambda$.
+\end{itemize}
+\subsection{Dot Product}
+O Dot Product é o somatório da multiplicação entre dois vetores que vai resultar em um número real. Podemos entender o dot product como uma forma de fazer uma combinação linear entre dois vetores.
+
+\vspace{0.5cm}
+
+\begin{equation}
+\begin{aligned}
+    \mathbf{u}^T \times \mathbf{x} = [u_{\mathcolor{orange}{1}} u_{\mathcolor{orange}{2}} ... u_{\mathcolor{orange}{d}}]^T_{1 \times\mathcolor{orange}{D} }\times 
+    \begin{bmatrix}
+    x_{\mathcolor{orange}{0}} \\
+    x_{\mathcolor{orange}{1}} \\
+    \vdots \\
+    x_{\mathcolor{orange}{d}}
+\end{bmatrix}_{\mathcolor{orange}{D}\times 1} \quad \\
+\end{aligned}
+\end{equation}
+
+\begin{equation*}
+    = u_{\mathcolor{orange}{0}}x_{\mathcolor{orange}{0}} + u_{\mathcolor{orange}{1}}x_{\mathcolor{orange}{1}} + u_{\mathcolor{orange}{2}}x_{\mathcolor{orange}{2}} ... +u_{\mathcolor{orange}{d}}x_{\mathcolor{orange}{d}}
+\end{equation*}
+
+\begin{equation*}
+= \sum_{i=1}^{d} u_{\mathcolor{orange}{i}}x_{\mathcolor{orange}{i}}
+\end{equation*}
+
+\vspace{0.5cm}
+
+Propriedades importantes do dot product:
+\begin{itemize}
+    \item Comutativa: $\mathbf{u}^T \mathbf{x} = \mathbf{x}^T \mathbf{u}$
+    \item Distributiva: $\mathbf{u}^T (\mathbf{x} + \mathbf{v}) = \mathbf{u}^T \mathbf{x} + \mathbf{u}^T \mathbf{v}$
+\end{itemize}
+
+\vspace{0.5cm}
+
+Além dessa interpretação algébria, podemos interpretar o dot product de forma geométrica. Todo vetor tem as propriedades de magnitude e direção. A magnitude pode ser entendida como o tamanho do vetor, e a direção como o ângulo que o vetor faz com o eixo horizontal.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Parts/MathematicalFoundations/Chapters/LinearAlgebra/Images/allDotProducts.pdf}
+    \caption{}
+    \label{fig:dot_product_geometry}
+\end{figure}
+
+
+ O dot product representa a multiplicação das magnitudes dos vetores e o cosseno do ângulo entre eles. 
+
+
+\begin{equation*}
+\mathbf{u} \cdot \mathbf{v} = |\mathbf{u}||\mathbf{v}|\cos(\theta)
+\end{equation*}
+
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.5\linewidth]{Parts/MathematicalFoundations/Chapters/LinearAlgebra/Images/orthogonalVectors.png}
+%     \caption{}
+%     \label{fig:dot_product_geometry_orthogonalVectors}
+% \end{figure}
+
+Quando os vetores são otogonais, ou seja, formam um ângulo de 90 graus entre eles $\theta = 90^\circ$, o $\cos(\theta)$ será igual a zero. Esse cenário mostrado na \ref{fig:dot_product_geometry}-B descreve o caso onde a projeção de um vetor no outro é nula. Outro caso interessante é quando os vetores estão em direções opostas, ou seja, formam um ângulo de 180 graus entre eles $\theta = 180^\circ$. Nesse caso, o $\cos(\theta)$ será igual a -1, e o dot product resultará em um valor negativo. Esse cenário é ilustrado na \ref{fig:dot_product_geometry}-C, onde a projeção de um vetor no outro é negativa.
+
+\subsection{Normas de um vetor}
+Em aprendizagem por dados, é comum querermos calcular similaridade entre pontos de dados e suas características. As normas (distâncias) entre vetores são frequentemente utilizadas para esse propósito. Podemos entender as normas como funções $\lVert \bullet \rVert: V \rightarrow \mathbb{R}$, que mapeiam um vetor para um número real, seu tamanho. Seja um vetor $\mathbf{u} \in \mathbb{R}^d$, ou seja, $\mathbf{u} = [u_1, u_2, ..., u_d]^T$, podemos calcular as seguintes normas para o vetor $\mathbf{u}$:
+
+\begin{itemize}
+    \item Norma Manhattan ou Norma L1: $\|\mathbf{u}\|_1 = \sum_{i=1}^{d} |u_i|$
+    \item Norma Euclidiana ou Norma L2: $\|\mathbf{u}\|_2 = \sqrt{\sum_{i=1}^{d} u_i^2} = \sqrt{\mathbf{u}^T \mathbf{u}}$ 
+\end{itemize}
+
+
+
+
+\subsection{Dependência linear e independência linear}
+
+Os conceitos de dependência linear e independência linear são fundamentais em álgebra linear e nos ajudam a entender as relações entre vetores e, consequentemente, entre pontos de dados. Considere um vetor $\mathbf{v}$, $\mathbf{v}$ é linearmente dependente de um conjunto de vetores $\{\mathbf{u}_1, \mathbf{u}_2, ..., \mathbf{u}_n\}$ se $\mathbf{v}$ pode ser alcançado pela seguinte combinação linear dos vetores $\mathbf{u}_1, \mathbf{u}_2, ..., \mathbf{u}_n$:
+
+\begin{equation*}
+    \mathbf{v} = \lambda_1 \mathbf{u}_1 + \lambda_2 \mathbf{u}_2 + ... + \lambda_n \mathbf{u}_n = \sum_{i=1}^{n} \lambda_i \mathbf{u}_i, \quad \lambda_i \in \mathbb{R}
+\end{equation*} 
+
+
+Se o vetor $\mathbf{v}$ não pode ser alcançado por nenhuma combinação linear dos vetores $\mathbf{u}_1, \mathbf{u}_2, ..., \mathbf{u}_n$, então $\mathbf{v}$ é linearmente independente dos vetores $\mathbf{u}_1, \mathbf{u}_2, ..., \mathbf{u}_n$.
+
+O vetor nulo $\mathbf{0}$ sempre pode ser escrito como uma combinação linear de qualquer conjunto de vetores, pois $\mathbf{0} = \sum_{i=1}^{n} 0 \cdot \mathbf{u}_i$, isto é, $\forall i \in [1, n] | \lambda_i = 0$. Para definir se um conjunto de vetores $U=\{\mathbf{u}_1, \mathbf{u}_2, ..., \mathbf{u}_n\}$ é linearmente independente ou dependente utilizamos esse fato. Devemos verificar se a única combinação linear que resulta no vetor nulo é aquela onde todos os coeficientes $\lambda_i = 0$, ou seja, a solução trivial. Se houver alguma combinação não trivial que resulte no vetor nulo, então os vetores são linearmente dependentes. Exemplo, considere os vetores $\mathbf{u}_1 = [1, 0]^T$, $\mathbf{u}_2 = [0, 1]^T$ e $\mathbf{v} = [1, 1]^T$. O vetor $\mathbf{v}$ pode ser escrito como:
+\begin{equation*}
+    \mathbf{v} = 1 \cdot \mathbf{u}_1 + 1 \cdot \mathbf{u}_2 = \begin{bmatrix}1 \\
+1
+\end{bmatrix} = \mathbf{u}_1 + \mathbf{u}_2
+\end{equation*}
+
+Ou seja, o vetor $\mathbf{v}$ é linearmente dependente dos vetores $\mathbf{u}_1$ e $\mathbf{u}_2$, pois $\mathbf{v}$ pode ser alcançado por meio da combinação linear entre eles. Por outro lado, os vetores $\mathbf{u}_1$ e $\mathbf{u}_2$ são linearmente independentes entre si, pois a única combinação linear que resulta no vetor nulo é aquela onde ambos os coeficientes são zero: $0 \cdot \mathbf{u}_1 + 0 \cdot \mathbf{u}_2 = \mathbf{0}$.
